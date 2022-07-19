@@ -1,8 +1,5 @@
-import Header from "../components/header";
+import Format from "../layout/format";
+
 export default function Home() {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <Format> Main Component</Format>;
 }
