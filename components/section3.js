@@ -1,37 +1,28 @@
-import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
+import Image from "next/image";
 import Author from "./_child/author";
 
-const Section2 = () => {
+const Section3 = () => {
   return (
-    <section className="container mx-auto md:px-20 py-10">
-      <h1 className=" font-bold text-4xl text-center py-12">Latest Posts</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
-      </div>
+    <section className="container mc-auto md:px-20 py-16">
+      <h1 className="font-bold text-4xl py-12 text-center">Most Popular</h1>
+      <Swiper slidesPerView={2}>
+        <SwiperSlide> {Post()} </SwiperSlide>
+        <SwiperSlide> {Post()} </SwiperSlide>
+        <SwiperSlide> {Post()} </SwiperSlide>
+      </Swiper>
     </section>
   );
 };
 
 const Post = () => {
   return (
-    <div className="item">
+    <div className="grid">
       <div className="images">
         <Link href={"/"}>
           <a>
-            <Image
-              src={"/images/img1.jpg"}
-              className="rounded"
-              width={500}
-              height={350}
-              alt=""
-            />
+            <Image src={"/images/img1.jpg"} width={600} height={400} alt="" />
           </a>
         </Link>
       </div>
@@ -48,7 +39,7 @@ const Post = () => {
         </div>
         <div className="title">
           <Link href={"/"}>
-            <a className="text-xl font-bold text-gray-800 hover:text-gray-600 ">
+            <a className="text-3xl md:text-4xl font-bold text-gray-800 hover:text-gray-600 ">
               Your most unhappy customers are your greatest source of learning
             </a>
           </Link>
@@ -65,5 +56,4 @@ const Post = () => {
     </div>
   );
 };
-
-export default Section2;
+export default Section3;
