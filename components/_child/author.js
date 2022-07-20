@@ -8,8 +8,8 @@ const Author = () => {
         src="/images/author/author1.png"
         className="rouded-full "
         alt=""
-        width={60}
-        height={60}
+        width={40}
+        height={40}
       ></Image>
       <div className="flex flex-col justify-center px-4">
         <a className="text-md font-bold text-gray-800 hover:text-gray-600">

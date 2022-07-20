@@ -10,7 +10,6 @@ const Section3 = () => {
       <Swiper slidesPerView={2}>
         <SwiperSlide> {Post()} </SwiperSlide>
         <SwiperSlide> {Post()} </SwiperSlide>
-        <SwiperSlide> {Post()} </SwiperSlide>
       </Swiper>
     </section>
   );
