@@ -1,12 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
+import Author from "./_child/author";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay } from "swiper";
+import "swiper/css";
 
 const Section1 = () => {
+  SwiperCore.use([Autoplay]);
+  const bg = {
+    background: 'url("/images/banner.png") no-repeat',
+    backgroundPosition: "right",
+  };
   return (
-    <section className="py-16">
+    <section className="py-16" style={bg}>
       <div className="container mx-auto md:px-20">
         <h1 className="font-bold text-4xl pb-12 text-center"> Treading</h1>
-        {Slide()}
+
+        <Swiper slidesPerView={1} loop="true" autoplay={{ delay: 2000 }}>
+          <SwiperSlide> {Slide()}</SwiperSlide>
+          <SwiperSlide> {Slide()}</SwiperSlide>
+          <SwiperSlide> {Slide()}</SwiperSlide>
+        </Swiper>
       </div>
     </section>
   );
@@ -44,7 +58,9 @@ const Slide = () => {
           most unhappy customers are your greatest source of learningYour most
           unhappy customers are your greatest source of learning
         </p>
-        <h1>author</h1>
+        <h1>
+          <Author />
+        </h1>
       </div>
     </div>
   );
