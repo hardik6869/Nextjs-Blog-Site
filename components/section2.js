@@ -1,40 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
 import Author from "./_child/author";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from "swiper";
-import "swiper/css";
 
-const Section1 = () => {
-  SwiperCore.use([Autoplay]);
-  const bg = {
-    background: 'url("/images/banner.png") no-repeat',
-    backgroundPosition: "right",
-  };
+const Section2 = () => {
   return (
-    <section className="py-16" style={bg}>
-      <div className="container mx-auto md:px-20">
-        <h1 className="font-bold text-4xl pb-12 text-center"> Treading</h1>
-        <Swiper slidesPerView={1} loop="true" autoplay={{ delay: 2000 }}>
-          <SwiperSlide> {Slide()}</SwiperSlide>
-          <SwiperSlide> {Slide()}</SwiperSlide>
-          <SwiperSlide> {Slide()}</SwiperSlide>
-        </Swiper>
+    <section className="container mx-auto md:px-20 py-10">
+      <h1 className=" font-bold text-4xl text-center py-12">Latest Posts</h1>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
+        {Post()}
+        {Post()}
+        {Post()}
+        {Post()}
+        {Post()}
+        {Post()}
+        {Post()}
       </div>
     </section>
   );
 };
-const Slide = () => {
+
+const Post = () => {
   return (
-    <div className="grid md:grid-cols-2">
-      <div className="image">
+    <div className="item">
+      <div className="images">
         <Link href={"/"}>
           <a>
-            <Image src={"/images/img1.jpg"} width={600} height={600} alt="" />
+            <Image src={"/images/img1.jpg"} width={500} height={350} alt="" />
           </a>
         </Link>
       </div>
-      <div className="info flex justify-center flex-col">
+      <div className="info flex justify-center flex-col py-4">
         <div className="cat">
           <Link href={"/"}>
             <a className="text-orange-600 hover:text-orange-800">
@@ -47,7 +42,7 @@ const Slide = () => {
         </div>
         <div className="title">
           <Link href={"/"}>
-            <a className="text-3xl md:text-6xl font-bold text-gray-800 hover:text-gray-600 ">
+            <a className="text-xl font-bold text-gray-800 hover:text-gray-600 ">
               Your most unhappy customers are your greatest source of learning
             </a>
           </Link>
@@ -65,4 +60,4 @@ const Slide = () => {
   );
 };
 
-export default Section1;
+export default Section2;
