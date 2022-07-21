@@ -1,6 +1,7 @@
 import Format from "../../layout/format";
 import Author from "../../components/_child/author";
 import Image from "next/image";
+import Related from "../../components/_child/related";
 const Page = () => {
   return (
     <Format>
@@ -40,6 +41,7 @@ const Page = () => {
             most unhappy customers are your greatest source of learning
           </p>
         </div>
+        <Related></Related>
       </section>
     </Format>
   );
