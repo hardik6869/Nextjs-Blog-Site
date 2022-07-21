@@ -6,33 +6,29 @@ import fetcher from "../lib/fetcher";
 
 const Section2 = () => {
   const { data, isLoading, isError } = fetcher("api/posts");
-  if (data) {
-    console.log(data);
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error</div>;
   return (
     <section className="container mx-auto md:px-20 py-10">
       <h1 className=" font-bold text-4xl text-center py-12">Latest Posts</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
-        {Post()}
+        {data.map((value, index) => (
+          <Post data={value} key={index} />
+        ))}
       </div>
     </section>
   );
 };
 
-const Post = () => {
+const Post = ({ data }) => {
+  const { id, title, category, img, published, author } = data;
   return (
-    <div className="item">
+    <div className="item" key={id}>
       <div className="images">
-        <Link href={"/"}>
+        <Link href={"/" || "/"}>
           <a>
             <Image
-              src={"/images/img1.jpg"}
+              src={img}
               className="rounded"
               width={500}
               height={350}
@@ -44,18 +40,16 @@ const Post = () => {
       <div className="info flex justify-center flex-col py-4">
         <div className="cat">
           <Link href={"/"}>
-            <a className="text-orange-600 hover:text-orange-800">
-              Business,Travel
-            </a>
+            <a className="text-orange-600 hover:text-orange-800">{category}</a>
           </Link>
           <Link href={"/"}>
-            <a className="text-gray-800 hover:text-gray-600"> - June 3, 2022</a>
+            <a className="text-gray-800 hover:text-gray-600"> {published}</a>
           </Link>
         </div>
         <div className="title">
           <Link href={"/"}>
             <a className="text-xl font-bold text-gray-800 hover:text-gray-600 ">
-              Your most unhappy customers are your greatest source of learning
+              {title}
             </a>
           </Link>
         </div>
@@ -64,9 +58,7 @@ const Post = () => {
           most unhappy customers are your greatest source of learningYour most
           unhappy customers are your greatest source of learning
         </p>
-        <h1>
-          <Author />
-        </h1>
+        <h1>{author ? <Author /> : ""}</h1>
       </div>
     </div>
   );
