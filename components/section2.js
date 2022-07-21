@@ -3,11 +3,13 @@ import Link from "next/link";
 import Author from "./_child/author";
 import getPost from "../lib/halper";
 import fetcher from "../lib/fetcher";
+import Spinner from "./_child/spinner";
+import Error from "./_child/error";
 
 const Section2 = () => {
   const { data, isLoading, isError } = fetcher("api/posts");
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading) return <Spinner />;
+  if (isError) return <Error />;
   return (
     <section className="container mx-auto md:px-20 py-10">
       <h1 className=" font-bold text-4xl text-center py-12">Latest Posts</h1>
