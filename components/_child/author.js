@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Author = () => {
+const Author = ({ name, img, designation }) => {
+  if (!name && !img) return "";
   return (
     <div className="author flex py-5 ">
       <Image
-        src="/images/author/author1.png"
+        src={img}
         className="rouded-full "
         alt=""
         width={40}
@@ -13,9 +14,9 @@ const Author = () => {
       ></Image>
       <div className="flex flex-col justify-center px-4">
         <a className="text-md font-bold text-gray-800 hover:text-gray-600">
-          Jhon
+          {name}
         </a>
-        <span className="text-sm text-gray-500">CEO & Founder</span>
+        <span className="text-sm text-gray-500">{designation}</span>
       </div>
     </div>
   );

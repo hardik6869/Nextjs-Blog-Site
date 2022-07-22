@@ -20,8 +20,12 @@ const Section1 = () => {
   return (
     <section className="py-16" style={bg}>
       <div className="container mx-auto md:px-20">
-        <h1 className="font-bold text-4xl pb-12 text-center"> Treading</h1>
-        <Swiper slidesPerView={1} loop="true" autoplay={{ delay: 2000 }}>
+        <h1 className="font-bold text-4xl pb-12 text-center"> Trending</h1>
+        <Swiper
+          breakpoints={{ 640: { slidesPerView: 1, spaceBetween: 20 } }}
+          loop="true"
+          autoplay={{ delay: 2000 }}
+        >
           {data.map((value, index) => (
             <SwiperSlide key={index}>
               <Slide data={value} />
@@ -35,9 +39,9 @@ const Section1 = () => {
 const Slide = ({ data }) => {
   const { id, title, category, img, published, description, author } = data;
   return (
-    <div className="grid md:grid-cols-2" key={id}>
+    <div className="grid md:grid-cols-2">
       <div className="image">
-        <Link href={"/"}>
+        <Link href={`/posts/${id}`}>
           <a>
             <Image src={img} width={600} height={600} alt="" />
           </a>
@@ -45,22 +49,22 @@ const Slide = ({ data }) => {
       </div>
       <div className="info flex justify-center flex-col">
         <div className="cat">
-          <Link href={"/"}>
+          <Link href={`/posts/${id}`}>
             <a className="text-orange-600 hover:text-orange-800">{category}</a>
           </Link>
-          <Link href={"/"}>
+          <Link href={`/posts/${id}`}>
             <a className="text-gray-800 hover:text-gray-600"> {published}</a>
           </Link>
         </div>
         <div className="title">
-          <Link href={"/"}>
+          <Link href={`/posts/${id}`}>
             <a className="text-3xl md:text-6xl font-bold text-gray-800 hover:text-gray-600 ">
               {title}
             </a>
           </Link>
         </div>
         <p className="text-grey-500 py-3 ">{description}</p>
-        <h1>{author ? <Author /> : ""}</h1>
+        <h1>{author ? <Author {...author} /> : ""}</h1>
       </div>
     </div>
   );

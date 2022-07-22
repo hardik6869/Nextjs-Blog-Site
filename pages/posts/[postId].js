@@ -3,13 +3,32 @@ import Author from "../../components/_child/author";
 import Image from "next/image";
 import Related from "../../components/_child/related";
 import getPost from "../../lib/halper";
+import fetcher from "../../lib/fetcher";
+import Spinner from "../../components/_child/spinner";
+import Error from "../../components/_child/error";
+import { useRouter } from "next/router";
+import { SWRConfig } from "swr";
 
-const Page = ({ title, img, subtitle, description, author }) => {
+const Posts = ({ fallback }) => {
+  const router = useRouter();
+  const { postId } = router.query;
+  const { data, isLoading, isError } = fetcher(`api/posts/${postId}`);
+  if (isLoading) return <Spinner />;
+  if (isError) return <Error />;
+  return (
+    <SWRConfig value={fallback}>
+      <Article {...data} />
+    </SWRConfig>
+  );
+};
+
+export default Posts;
+const Article = ({ title, img, subtitle, description, author }) => {
   return (
     <Format>
       <section className="container mx-auto md:px-2 py-16 w-1/2">
         <div className="flex justify-center">
-          <h1>{author ? <Author /> : ""}</h1>
+          <h1>{author ? <Author {...author} /> : ""}</h1>
         </div>
         <div className="post py-10">
           <h1 className="font-bold text-4xl text-center pb-5">{title}</h1>
@@ -26,12 +45,14 @@ const Page = ({ title, img, subtitle, description, author }) => {
   );
 };
 
-export default Page;
-
 export async function getStaticProps({ params }) {
   const posts = await getPost(params.postId);
   return {
-    props: posts,
+    props: {
+      fallback: {
+        "/api/posts": posts,
+      },
+    },
   };
 }
 
