@@ -23,7 +23,7 @@ const Section2 = () => {
 };
 
 const Post = ({ data }) => {
-  const { id, title, category, img, published, author } = data;
+  const { id, title, category, img, published, author, subtitle } = data;
   return (
     <div className="item" key={id}>
       <div className="images">
@@ -55,11 +55,7 @@ const Post = ({ data }) => {
             </a>
           </Link>
         </div>
-        <p className="text-grey-500 py-3 ">
-          Your most unhappy customers are your greatest source of learningYour
-          most unhappy customers are your greatest source of learningYour most
-          unhappy customers are your greatest source of learning
-        </p>
+        <p className="text-grey-500 py-3 ">{subtitle}</p>
         <h1>{author ? <Author /> : ""}</h1>
       </div>
     </div>
