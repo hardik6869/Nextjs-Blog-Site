@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 const Author = ({ name, img, designation }) => {
   if (!name && !img) return "";

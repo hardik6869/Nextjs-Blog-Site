@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import Author from "./_child/author";
-import getPost from "../lib/halper";
 import fetcher from "../lib/fetcher";
 import Spinner from "./_child/spinner";
 import Error from "./_child/error";
