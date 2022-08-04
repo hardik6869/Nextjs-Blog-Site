@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    BASEURL: "http://localhost:3000/",
+    BASEURL: "http://nextjs-blog-site-2u56ufpp5-hardik6869.vercel.ap",
   },
 };
 
