@@ -1,7 +1,11 @@
-import { ImFacebook, ImYoutube, ImTwitter } from "react-icons/im";
-import Link from "next/link";
+import {
+  ImFacebook,
+  ImYoutube,
+  ImTwitter,
+} from "../node_modules/react-icons/im";
+import Link from "../node_modules/next/link";
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <header className="bg-grey-50">
       <div className="xl:container xl:mx-auto flex flex-col items-center sm:flex-row sm:justify-between text-center py-3">

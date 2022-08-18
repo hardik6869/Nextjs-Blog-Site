@@ -1,11 +1,12 @@
-import Link from "next/link";
-import Image from "next/image";
+import Image from "../node_modules/next/image";
+import Link from "../node_modules/next/link";
 import Author from "./_child/author";
-import Spinner from "../components/_child/spinner";
-import Error from "../components/_child/error";
+import Spinner from "./_child/spinner";
+import Error from "./_child/error";
 import fetcher from "../lib/fetcher";
+import { PostsAction } from "../interface/Actions";
 
-const Section4 = () => {
+const Section4 = (): JSX.Element => {
   const { data, isLoading, isError } = fetcher("api/popular");
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
@@ -34,7 +35,7 @@ const Section4 = () => {
   );
 };
 
-const Post = ({ data }) => {
+const Post = ({ data }: { data: PostsAction }): JSX.Element => {
   const { id, title, category, img, published, author } = data;
   return (
     <div className="flex gap-5">

@@ -9,7 +9,7 @@ import Error from "../../components/_child/error";
 import { useRouter } from "next/router";
 import { SWRConfig } from "swr";
 
-const Posts = ({ fallback }) => {
+const Posts = ({ fallback }): JSX.Element => {
   const router = useRouter();
   const { postId } = router.query;
   const { data, isLoading, isError } = fetcher(`api/posts/${postId}`);

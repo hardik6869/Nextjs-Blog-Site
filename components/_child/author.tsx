@@ -1,6 +1,14 @@
-import Image from "next/image";
+import Image from "../../node_modules/next/image";
 
-const Author = ({ name, img, designation }) => {
+const Author = ({
+  name,
+  img,
+  designation,
+}: {
+  name: string;
+  img: string;
+  designation: string;
+}): "" | JSX.Element => {
   if (!name && !img) return "";
   return (
     <div className="author flex py-5 ">

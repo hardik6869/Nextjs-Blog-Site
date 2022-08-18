@@ -1,8 +1,8 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Head from "next/head";
+import Head from "../node_modules/next/head";
 
-const Format = ({ children }) => {
+const Format = ({ children }): JSX.Element => {
   return (
     <>
       <Head>

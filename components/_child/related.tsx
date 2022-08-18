@@ -1,11 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from "../../node_modules/next/image";
+import Link from "../../node_modules/next/link";
 import Author from "./author";
 import Spinner from "./spinner";
 import Error from "./error";
 import fetcher from "../../lib/fetcher";
+import { Key } from "react";
+import { PostsAction } from "../../interface/Actions";
 
-const Related = () => {
+const Related = (): JSX.Element => {
   const { data, isLoading, isError } = fetcher("api/posts");
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
@@ -13,7 +15,7 @@ const Related = () => {
     <section className=" pt-20">
       <h1 className="font-bold text-4xl text-left">Related</h1>
       <div className="flex flex-col gap-10">
-        {data.map((value, index) => (
+        {data.map((value: PostsAction, index: Key) => (
           <Post key={index} data={value} />
         ))}
       </div>
@@ -21,7 +23,7 @@ const Related = () => {
   );
 };
 
-const Post = ({ data }) => {
+const Post = ({ data }: { data: PostsAction }): JSX.Element => {
   const { id, title, category, img, published, author } = data;
   return (
     <div className="flex gap-5">

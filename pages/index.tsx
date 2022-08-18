@@ -4,7 +4,7 @@ import Section3 from "../components/section3";
 import Section4 from "../components/section4";
 import Format from "../layout/format";
 
-export default function Home() {
+const Home = () => {
   return (
     <Format>
       <Section1 />
@@ -13,4 +13,6 @@ export default function Home() {
       <Section4 />
     </Format>
   );
-}
+};
+
+export default Home;

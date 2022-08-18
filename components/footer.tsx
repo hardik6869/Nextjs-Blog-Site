@@ -1,7 +1,13 @@
-import { ImFacebook, ImYoutube, ImTwitter } from "react-icons/im";
-import Link from "next/link";
+import {
+  ImFacebook,
+  ImYoutube,
+  ImTwitter,
+} from "../node_modules/react-icons/im";
+
+import Link from "../node_modules/next/link";
+
 import NewsLatter from "./_child/newslatter";
-const Footer = () => {
+const Footer = (): JSX.Element => {
   const bg = {
     background: "url('/images/footer.png') no-repeat",
     backgroundPosition: "bottom left",

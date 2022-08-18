@@ -1,14 +1,16 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from "../node_modules/next/image";
+import Link from "../node_modules/next/link";
 import Author from "./_child/author";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "../node_modules/swiper/react";
+import SwiperCore, { Autoplay } from "../node_modules/swiper";
 import "swiper/css";
-import Spinner from "../components/_child/spinner";
-import Error from "../components/_child/error";
+import Spinner from "./_child/spinner";
+import Error from "./_child/error";
 import fetcher from "../lib/fetcher";
+import { PostsAction } from "../interface/Actions";
+import { Key } from "react";
 
-const Section1 = () => {
+const Section1 = (): JSX.Element => {
   const { data, isLoading, isError } = fetcher("api/trending");
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
@@ -26,7 +28,7 @@ const Section1 = () => {
           loop="true"
           autoplay={{ delay: 2000 }}
         >
-          {data.map((value, index) => (
+          {data.map((value: PostsAction, index: Key) => (
             <SwiperSlide key={index}>
               <Slide data={value} />
             </SwiperSlide>
@@ -36,7 +38,7 @@ const Section1 = () => {
     </section>
   );
 };
-const Slide = ({ data }) => {
+const Slide = ({ data }: { data: PostsAction }): JSX.Element => {
   const { id, title, category, img, published, description, author } = data;
   return (
     <div className="grid md:grid-cols-2">

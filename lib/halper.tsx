@@ -1,4 +1,4 @@
-const baseURL = `${process.env.BASEURL}api/posts`;
+const baseURL = `${process.env.BASEURL}/api/posts`;
 
 const getPost = async (id) => {
   const res = await fetch(`${baseURL}`);

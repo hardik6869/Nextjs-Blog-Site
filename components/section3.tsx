@@ -1,12 +1,14 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import Link from "next/link";
-import Image from "next/image";
+import { Swiper, SwiperSlide } from "../node_modules/swiper/react";
+import Image from "../node_modules/next/image";
+import Link from "../node_modules/next/link";
 import Author from "./_child/author";
-import Spinner from "../components/_child/spinner";
-import Error from "../components/_child/error";
+import Spinner from "./_child/spinner";
+import Error from "./_child/error";
 import fetcher from "../lib/fetcher";
+import { PostsAction } from "../interface/Actions";
+import { Key } from "react";
 
-const Section3 = () => {
+const Section3 = (): JSX.Element => {
   const { data, isLoading, isError } = fetcher("api/popular");
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
@@ -14,7 +16,7 @@ const Section3 = () => {
     <section className="container mx-auto md:px-20 py-16">
       <h1 className="font-bold text-4xl py-12 text-center">Most Popular</h1>
       <Swiper breakpoints={{ 640: { slidesPerView: 2, spaceBetween: 20 } }}>
-        {data.map((value, index) => (
+        {data.map((value: PostsAction, index: Key) => (
           <SwiperSlide key={index}>
             <Popular data={value} />
           </SwiperSlide>
@@ -24,7 +26,7 @@ const Section3 = () => {
   );
 };
 
-const Popular = ({ data }) => {
+const Popular = ({ data }: { data: PostsAction }): JSX.Element => {
   const { id, title, category, img, published, description, author } = data;
   return (
     <div className="grid">

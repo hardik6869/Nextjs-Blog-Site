@@ -1,11 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from "../node_modules/next/image";
+import Link from "../node_modules/next/link";
 import Author from "./_child/author";
 import fetcher from "../lib/fetcher";
 import Spinner from "./_child/spinner";
 import Error from "./_child/error";
+import { PostsAction } from "../interface/Actions";
+import { Key } from "react";
 
-const Section2 = () => {
+const Section2 = (): JSX.Element => {
   const { data, isLoading, isError } = fetcher("api/posts");
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
@@ -13,7 +15,7 @@ const Section2 = () => {
     <section className="container mx-auto md:px-20 py-10">
       <h1 className=" font-bold text-4xl text-center py-12">Latest Posts</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
-        {data.map((value, index) => (
+        {data.map((value: PostsAction, index: Key) => (
           <Post data={value} key={index} />
         ))}
       </div>
@@ -21,7 +23,7 @@ const Section2 = () => {
   );
 };
 
-const Post = ({ data }) => {
+const Post = ({ data }: { data: PostsAction }) => {
   const { id, title, category, img, published, author, subtitle } = data;
   return (
     <div className="item">
