@@ -1,6 +1,5 @@
 import Image from "../node_modules/next/image";
 import Link from "../node_modules/next/link";
-import Author from "./_child/author";
 import { Swiper, SwiperSlide } from "../node_modules/swiper/react";
 import SwiperCore, { Autoplay } from "../node_modules/swiper";
 import "swiper/css";
@@ -9,6 +8,7 @@ import Error from "./_child/error";
 import fetcher from "../lib/fetcher";
 import { PostsAction } from "../interface/Actions";
 import { Key } from "react";
+import Author from "./_child/author";
 
 const Section1 = (): JSX.Element => {
   const { data, isLoading, isError } = fetcher("api/trending");
@@ -25,7 +25,7 @@ const Section1 = (): JSX.Element => {
         <h1 className="font-bold text-4xl pb-12 text-center"> Trending</h1>
         <Swiper
           breakpoints={{ 640: { slidesPerView: 1, spaceBetween: 20 } }}
-          loop="true"
+          loop={true}
           autoplay={{ delay: 2000 }}
         >
           {data.map((value: PostsAction, index: Key) => (

@@ -5,7 +5,7 @@ import {
 } from "../../../node_modules/next/dist/shared/lib/utils";
 import data from "../data";
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   const { postId } = req.query;
   const { Posts } = data;
   if (postId) {

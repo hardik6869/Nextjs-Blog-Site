@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import Image from "../../node_modules/next/image";
 
 const Author = ({
@@ -8,8 +9,8 @@ const Author = ({
   name: string;
   img: string;
   designation: string;
-}): "" | JSX.Element => {
-  if (!name && !img) return "";
+}): ReactElement<String, ""> => {
+  if (!name && !img) return null;
   return (
     <div className="author flex py-5 ">
       <Image

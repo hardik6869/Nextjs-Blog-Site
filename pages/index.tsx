@@ -4,7 +4,7 @@ import Section3 from "../components/section3";
 import Section4 from "../components/section4";
 import Format from "../layout/format";
 
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
     <Format>
       <Section1 />

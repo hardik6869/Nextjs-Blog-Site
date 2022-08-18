@@ -1,13 +1,13 @@
 import useSWR from "swr";
+import { PostsAction } from "../interface/Actions";
 
-const baseURL = `${process.env.BASEURL}/`;
-console.log(baseURL);
-const response = (...args) => fetch(...args).then((res) => res.json());
+const baseURL: string = `${process.env.BASEURL}/`;
+const response = (...args: PostsAction[]): Promise<PostsAction[]> =>
+  fetch(...args).then((res: Response) => res.json());
 
-export default function fetcher(endpoint) {
+export default function fetcher(endpoint: string) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, error } = useSWR(`${baseURL}${endpoint}`, response);
-
   return {
     data,
     isLoading: !error && !data,

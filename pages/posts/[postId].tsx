@@ -8,6 +8,8 @@ import Spinner from "../../components/_child/spinner";
 import Error from "../../components/_child/error";
 import { useRouter } from "next/router";
 import { SWRConfig } from "swr";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { ParsedUrlQuery } from "querystring";
 
 const Posts = ({ fallback }): JSX.Element => {
   const router = useRouter();
@@ -45,7 +47,9 @@ const Article = ({ title, img, subtitle, description, author }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}: ParsedUrlQuery) => {
   const posts = await getPost(params.postId);
   return {
     props: {
@@ -54,11 +58,11 @@ export async function getStaticProps({ params }) {
       },
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getPost();
-  const paths = posts.map((value) => {
+  const paths = posts.map((value: { id: { toString: () => string } }) => {
     return {
       params: {
         postId: value.id.toString(),
@@ -69,4 +73,4 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+};
