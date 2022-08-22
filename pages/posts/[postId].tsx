@@ -10,6 +10,11 @@ import { useRouter } from "next/router";
 import { SWRConfig } from "swr";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+import {
+  ArticleAction,
+  PostedAction,
+  PostsAction,
+} from "../../interface/Actions";
 
 const Posts = ({ fallback }): JSX.Element => {
   const router = useRouter();
@@ -19,13 +24,25 @@ const Posts = ({ fallback }): JSX.Element => {
   if (isError) return <Error />;
   return (
     <SWRConfig value={fallback}>
-      <Article {...data} />
+      <Article
+        title={""}
+        subtitle={""}
+        img={""}
+        description={""}
+        author={{
+          name: "",
+          img: "",
+          designation: "",
+        }}
+        {...data}
+      />
     </SWRConfig>
   );
 };
 
 export default Posts;
-const Article = ({ title, img, subtitle, description, author }) => {
+const Article = (_data: ArticleAction) => {
+  const { title, img, subtitle, description, author } = _data;
   return (
     <Format>
       <section className="container mx-auto md:px-2 py-16 w-1/2">
@@ -49,8 +66,8 @@ const Article = ({ title, img, subtitle, description, author }) => {
 
 export const getStaticProps: GetStaticProps = async ({
   params,
-}: ParsedUrlQuery) => {
-  const posts = await getPost(params.postId);
+}: ParsedUrlQuery & PostedAction) => {
+  const posts: PostedAction = await getPost(params.postId);
   return {
     props: {
       fallback: {
@@ -61,7 +78,7 @@ export const getStaticProps: GetStaticProps = async ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPost();
+  const posts: PostsAction[] = await getPost();
   const paths = posts.map((value: { id: { toString: () => string } }) => {
     return {
       params: {

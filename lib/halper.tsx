@@ -1,11 +1,13 @@
+import { PostsAction } from "../interface/Actions";
+
 const baseURL = `${process.env.BASEURL}/api/posts`;
 
-const getPost = async (id: String) => {
-  const res = await fetch(`${baseURL}`);
-  const posts = await res.json();
+const getPost = async (id?: string) => {
+  const res: Response = await fetch(`${baseURL}`);
+  const posts = (await res.json()) as PostsAction;
 
   if (id) {
-    return posts.find((value: { id: String }) => value.id == id);
+    return posts.find((value: { id: string }) => value.id == id);
   }
   return posts;
 };
