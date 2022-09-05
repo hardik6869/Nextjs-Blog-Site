@@ -1,6 +1,6 @@
 export interface PostsAction {
   find(arg0: (value: { id: string }) => boolean);
-  id: number | string | string[];
+  id: string | string[];
   title: string;
   subtitle: string;
   category: string;
